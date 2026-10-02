@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="light">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khảo thí CLO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,17 +10,17 @@
 <style>
 /* Layout: thanh điều hướng trái cố định + vùng làm việc; pastel tươi, viền đậm, bóng đổ khối */
 :root{
-  --bg:#FFF8F1; --bg2:#FDF0FF; --surface:#FFFFFF; --sunk:#FFF3E8;
-  --ink:#1E1B3A; --ink2:#55507A; --ink3:#9A94BC; --line:#1E1B3A; --hair:#EADFF3;
-  --berry:#FF4F8B; --berry-s:#FFD9E7;
-  --sky:#3B82F6; --sky-s:#D6E6FF;
-  --mint:#10B981; --mint-s:#C9F7E4;
-  --lemon:#F5B400; --lemon-s:#FFF0B8;
-  --grape:#8B5CF6; --grape-s:#E7DCFF;
-  --peach:#FF8A3D; --peach-s:#FFE1CC;
-  --bad:#E5484D; --bad-s:#FFDCDD;
-  --block:4px 4px 0 var(--line);
-  --block-sm:2px 2px 0 var(--line);
+  --bg:#F3F8FF; --bg2:#E2EFFF; --surface:#FFFFFF; --sunk:#EFF5FC;
+  --ink:#15304F; --ink2:#3D587A; --ink3:#6A809E; --line:#C3D5EA; --hair:#E1EBF6;
+  --berry:#D9578A; --berry-s:#FCE3EE;
+  --sky:#2A74C9; --sky-s:#DCEBFC;
+  --mint:#1E9A74; --mint-s:#D6F2E8;
+  --lemon:#FFD565; --lemon-s:#FFF5D4;
+  --grape:#7766D2; --grape-s:#ECE8FC;
+  --peach:#E9844B; --peach-s:#FFE9DA;
+  --bad:#D2404C; --bad-s:#FDE2E4;
+  --block:0 1px 0 rgba(42,116,201,.10),0 8px 20px -10px rgba(21,48,79,.22);
+  --block-sm:0 1px 0 rgba(42,116,201,.08),0 4px 10px -6px rgba(21,48,79,.20);
   --f:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
   --r:14px;
@@ -335,6 +336,107 @@ table.roster td{white-space:nowrap}table.roster td:nth-child(3){white-space:norm
 #netBadge.busy i{background:var(--lemon)} #netBadge.off i{background:var(--bad);animation:pulse 1s infinite} #netBadge.off{background:var(--bad-s)}
 .boot{min-height:100vh;display:grid;place-items:center;font-weight:700}
 .pwbox{display:flex;flex-direction:column;gap:10px;max-width:420px}
+
+/* ===== HỆ MÀU “TRỜI XANH PASTEL” =====
+   Một màu chủ đạo (xanh trời) cho mọi thao tác chính; các màu phụ cùng độ sáng, độ bão hòa thấp để hài hòa.
+   Mỗi màu có 3 cấp: nền nhạt (-s), viền (-b), chữ đậm cùng sắc (-t) → chữ luôn đủ tương phản trên nền pastel. */
+:root{
+  --sky-b:#A9CBF2; --sky-t:#1D5FAA; --sky-tint:#EEF5FE;
+  --mint-b:#9ED8C2; --mint-t:#11684F;
+  --lemon-b:#F0D27E; --lemon-t:#7A5600;
+  --berry-b:#F2B3CB; --berry-t:#A3335F;
+  --grape-b:#C9C0F2; --grape-t:#4E3FA8;
+  --peach-b:#F5C3A2; --peach-t:#9A4A16;
+  --bad-b:#F1A9AF; --bad-t:#A82633;
+}
+/* Nút: 1 nút chính (xanh đặc) cho việc quan trọng nhất; các nút màu là pastel nhạt + chữ đậm cùng sắc */
+.btn{border-width:1.5px;border-color:var(--line);transition:transform .12s,box-shadow .12s,background .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--block);border-color:var(--sky-b)}
+.btn:active{transform:none;box-shadow:none}
+.btn:focus-visible{outline:3px solid rgba(42,116,201,.35);outline-offset:2px}
+.btn.pri,.qnav button.cur{background:var(--sky);border-color:var(--sky);color:#fff}
+.btn.pri:hover{background:#2367B5;border-color:#2367B5}
+.btn.sky{background:var(--sky-s);border-color:var(--sky-b);color:var(--sky-t)}
+.btn.mint{background:var(--mint-s);border-color:var(--mint-b);color:var(--mint-t)}
+.btn.lemon{background:var(--lemon-s);border-color:var(--lemon-b);color:var(--lemon-t)}
+.btn.ghost{background:transparent;border-color:var(--hair);box-shadow:none}
+.btn.bad{background:var(--bad-s);border-color:var(--bad-b);color:var(--bad-t)}
+.btn.ghost:hover{background:var(--sky-tint)}
+/* Thẻ, ô nhập, bảng */
+.card,.paper{border-width:1.5px;border-color:var(--line)}
+.in{border-width:1.5px}
+.in:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(42,116,201,.16)}
+th{color:var(--ink2);background:var(--sky-tint)}
+a{color:var(--sky-t)}
+.side,.mobilebar{border-color:var(--line)}
+/* Nhãn (chip): nền pastel + viền + chữ cùng sắc */
+.chip{border-width:1px}
+.c-berry{background:var(--berry-s);border-color:var(--berry-b);color:var(--berry-t)}
+.c-sky{background:var(--sky-s);border-color:var(--sky-b);color:var(--sky-t)}
+.c-mint{background:var(--mint-s);border-color:var(--mint-b);color:var(--mint-t)}
+.c-lemon{background:var(--lemon-s);border-color:var(--lemon-b);color:var(--lemon-t)}
+.c-grape{background:var(--grape-s);border-color:var(--grape-b);color:var(--grape-t)}
+.c-peach{background:var(--peach-s);border-color:var(--peach-b);color:var(--peach-t)}
+.c-bad{background:var(--bad-s);border-color:var(--bad-b);color:var(--bad-t)}
+.c-plain{background:var(--sunk);border-color:var(--hair);color:var(--ink2)}
+/* Điều hướng, thẻ chọn */
+.nav button.on,.gitem.on{background:var(--sky-s);border-color:var(--sky-b);color:var(--sky-t)}
+.gitem.on{box-shadow:inset 4px 0 0 var(--sky)}
+.nav .count,.cfilter .count{background:var(--sky)}
+.ctx{background:var(--sky-tint);border-color:var(--sky-b);box-shadow:none}
+.tabs button.on,.sumbox.on,.mode.on,.role button.on{background:var(--sky-s);border-color:var(--sky-b);color:var(--sky-t)}
+.seg label.on{background:var(--sky)!important;color:#fff}
+.seg label{border-color:var(--line)}
+.sumbox,.monsum>div{border-width:1.5px;border-color:var(--line)}
+.opt{border-width:1.5px}
+.opt.sel{border-color:var(--sky);background:var(--sky-s);box-shadow:0 0 0 3px rgba(42,116,201,.12)}
+.opt.right{border-color:var(--mint-b);background:var(--mint-s)}
+.qnav button{border-width:1.5px}
+.qnav button.done{background:var(--mint-s);border-color:var(--mint-b);color:var(--mint-t)}
+.logo{background:var(--sky);color:#fff;border-color:var(--sky)}
+.timer{border-width:1.5px;background:var(--sky-tint);border-color:var(--sky-b);color:var(--sky-t);box-shadow:none}
+.timer.warn{background:var(--lemon-s);border-color:var(--lemon-b);color:var(--lemon-t)}
+.timer.crit{background:var(--bad-s);border-color:var(--bad);color:var(--bad-t);animation:glowBad 1s ease-in-out infinite}
+.toast{background:#15304F;color:#fff;border-color:#15304F}
+.code,.in.code,textarea.in.code,pre.in.code{background:#14263D;color:#EEF5FF;caret-color:#FFD565}
+/* Đăng nhập */
+.lbox{box-shadow:0 20px 50px -24px rgba(21,48,79,.35);border-width:1.5px}
+.lart{background:linear-gradient(155deg,#3C86D8 0%,#5FA4EC 60%,#8CC4F5 100%)}
+.lart p{color:#F0F7FF}
+.lart .eyebrow{color:#E3F0FF!important}
+.blobs span{border:0;box-shadow:none;color:#15304F;background:rgba(255,255,255,.92)!important}
+.lock .card{border-color:var(--bad);box-shadow:0 0 0 4px var(--bad-s),0 16px 40px -16px rgba(210,64,76,.5)}
+
+/* ===== CƠ CHẾ NHẤN MẠNH: dẫn ánh mắt theo mức độ =====
+   1) Thông tin  – vạch màu bên trái + nền nhạt (không chuyển động)
+   2) Cần chú ý  – vầng sáng vàng thở chậm (.attn-warn)
+   3) Khẩn cấp   – vầng sáng đỏ nhấp nháy (.attn-bad, .pulse), chấm đỏ nhấp nháy (.live)
+   4) Việc nên làm tiếp – vầng sáng xanh mời bấm (.attn) */
+@keyframes glowSky{0%,100%{box-shadow:0 0 0 0 rgba(42,116,201,.0)}50%{box-shadow:0 0 0 6px rgba(42,116,201,.22)}}
+@keyframes glowWarn{0%,100%{box-shadow:0 0 0 0 rgba(232,170,40,.0)}50%{box-shadow:0 0 0 6px rgba(232,170,40,.30)}}
+@keyframes glowBad{0%,100%{box-shadow:0 0 0 0 rgba(210,64,76,.0)}50%{box-shadow:0 0 0 7px rgba(210,64,76,.28)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.attn{animation:glowSky 2.2s ease-in-out infinite}
+.attn-warn{animation:glowWarn 2.4s ease-in-out infinite}
+.attn-bad,.pulse{animation:glowBad 1.1s ease-in-out infinite}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--bad);margin-right:6px;vertical-align:1px;animation:blink 1s infinite}
+.live.sky{background:var(--sky)} .live.mint{background:var(--mint)} .live.warn{background:#E8AA28}
+.nav .count.hot{background:var(--bad);animation:glowBad 1.1s ease-in-out infinite}
+.nav .count.warm{background:#E8AA28;color:#3D2B00}
+.banner{border-width:1.5px;border-color:var(--peach-b);background:var(--peach-s);border-left:6px solid var(--peach);color:var(--ink)}
+.banner.info{border-color:var(--sky-b);background:var(--sky-tint);border-left-color:var(--sky)}
+.banner.warn{border-color:var(--lemon-b);background:var(--lemon-s);border-left-color:#E8AA28}
+.banner.bad{border-color:var(--bad-b);background:var(--bad-s);border-left-color:var(--bad)}
+.due.urgent{color:var(--bad-t)!important;font-weight:800}
+.due.urgent::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--bad);margin-right:6px;vertical-align:1px;animation:blink 1s infinite}
+.svrow.hot{background:linear-gradient(90deg,var(--bad-s),transparent 60%)}
+.svrow.doing{background:linear-gradient(90deg,var(--sky-tint),transparent 70%)}
+tr.locked td{background:var(--bad-s)!important}
+tr.locked td:first-child{box-shadow:inset 4px 0 0 var(--bad)}
+.monsum .hot{border-color:var(--bad)!important;animation:glowBad 1.1s ease-in-out infinite}
+.mh i{animation:none}
+.mh.live-h i{animation:blink 1.4s infinite}
+@media (prefers-reduced-motion:reduce){.attn,.attn-warn,.attn-bad,.pulse,.live,.due.urgent::before,.nav .count.hot,.monsum .hot{animation:none!important}}
 </style>
 <script src="config.js"></script>
 </head>
@@ -909,7 +1011,7 @@ function render() {
   const N = navItems();
   const body = ({archive: gvArchive, monitor: gvMonitor, home: gvHome, exams: gvExams, editor: gvEditor, grade: gvGrade, report: gvReport, students: gvStudents, courses: gvCourses, connect: gvConnect,
                  mine: svMine, myresults: svResults})[S.view]?.() ?? '';
-  const btn = ([k, t, c, n]) => `<button class="${S.view === k || (S.view === 'editor' && k === 'exams') ? 'on' : ''}" data-go="${k}"><span class="dot" style="background:${c}"></span>${t}${n ? `<span class="count num">${n}</span>` : ''}</button>`;
+  const btn = ([k, t, c, n]) => `<button class="${S.view === k || (S.view === 'editor' && k === 'exams') ? 'on' : ''}" data-go="${k}"><span class="dot" style="background:${c}"></span>${t}${n ? `<span class="count num ${k === 'monitor' ? 'hot' : k === 'grade' ? 'warm' : ''}">${n}</span>` : ''}</button>`;
   const sec = DB.me.role === 'gv' && SEC();
   const all = [...N.global, ...N.local, ...N.admin];
   $('#root').innerHTML = `
@@ -927,7 +1029,7 @@ function render() {
     </aside>
     <div style="min-width:0">
       <div class="mobilebar">${sec ? `<div style="flex:none;width:220px">${sectionPicker('ctxSelM')}</div>` : ''}${all.map(([k, t]) => `<button class="btn sm ${S.view === k ? 'pri' : 'ghost'}" data-go="${k}">${t}</button>`).join('')}<button class="btn sm ghost" data-act="logout">Thoát</button></div>
-      <main class="main">${sec && sec.archived && !['home','archive','courses','connect'].includes(S.view) ? `<div class="banner">Đang xem lớp <b>${esc(sec.cls)}</b> đã lưu trữ ngày ${dt(sec.archived.at)}. Dữ liệu giữ nguyên để tra cứu. <button class="btn sm" data-act="unarchive" data-id="${sec.id}">Khôi phục lớp</button><button class="btn sm ghost" data-go="archive">Về mục Lưu trữ</button></div>` : ''}${body}</main>
+      <main class="main">${sec && sec.archived && !['home','archive','courses','connect'].includes(S.view) ? `<div class="banner info">Đang xem lớp <b>${esc(sec.cls)}</b> đã lưu trữ ngày ${dt(sec.archived.at)}. Dữ liệu giữ nguyên để tra cứu. <button class="btn sm" data-act="unarchive" data-id="${sec.id}">Khôi phục lớp</button><button class="btn sm ghost" data-go="archive">Về mục Lưu trữ</button></div>` : ''}${body}</main>
     </div>
   </div>`;
   afterRender();
@@ -978,9 +1080,9 @@ function gvHome() {
   ${pageHead(esc(DB.me.name), 'Tất cả lớp của tôi', '', `<button class="btn" data-act="importXls">Nhập danh sách từ Excel</button><button class="btn" data-act="newSection">+ Lớp học phần</button><button class="btn pri" data-act="newCourse">+ Học phần</button>`)}
   <div class="grid g4">
     <div class="card stat" style="background:var(--grape-s)"><span class="v">${courses.size}</span><span class="k">Học phần</span></div>
-    <div class="card stat" style="background:var(--berry-s)"><span class="v">${secs.length}</span><span class="k">Lớp học phần</span></div>
-    <div class="card stat" style="background:var(--lemon-s)"><span class="v">${svAll}</span><span class="k">Sinh viên (không trùng)</span></div>
-    <div class="card stat" style="background:var(--sky-s)"><span class="v">${pendAll}</span><span class="k">Bài chờ chấm</span></div>
+    <div class="card stat" style="background:var(--sky-s)"><span class="v">${secs.length}</span><span class="k">Lớp học phần</span></div>
+    <div class="card stat" style="background:var(--mint-s)"><span class="v">${svAll}</span><span class="k">Sinh viên (không trùng)</span></div>
+    <div class="card stat ${pendAll ? 'attn-warn' : ''}" style="background:${pendAll ? 'var(--lemon-s)' : 'var(--sky-s)'}"><span class="v">${pendAll}</span><span class="k">Bài chờ chấm</span></div>
   </div>
   <div class="row" style="margin:22px 0 14px;justify-content:space-between">
     <div class="tabs"><button class="${S.homeTerm === 'all' ? 'on' : ''}" data-act="homeTerm" data-v="all">Tất cả học kỳ</button>${terms.map(t => `<button class="${S.homeTerm === t ? 'on' : ''}" data-act="homeTerm" data-v="${t}">${t}</button>`).join('')}</div>
@@ -995,12 +1097,12 @@ function secCard(s) {
   const done = ex.filter(e => e.status !== 'draft').map(e => e.id);
   const R = cloReport(c, done, s.students);
   const cur = s.id === SEC()?.id;
-  return `<div class="card stack" style="gap:10px;${cur ? 'background:var(--lemon-s)' : ''}">
-    <div class="row" style="justify-content:space-between"><span class="chip c-plain">Mã HP ${esc(c.code)}</span>${cur ? '<span class="chip c-berry">Đang làm việc</span>' : ''}</div>
+  return `<div class="card stack" style="gap:10px;${cur ? 'background:var(--sky-tint);border-color:var(--sky-b)' : ''}">
+    <div class="row" style="justify-content:space-between"><span class="chip c-plain">Mã HP ${esc(c.code)}</span>${cur ? '<span class="chip c-sky">Đang làm việc</span>' : ''}</div>
     <div><h3>${esc(c.name)}</h3><p class="muted">Lớp <b>${esc(s.cls)}</b> · ${s.students.length} SV · ${c.credits} TC</p></div>
     <div class="row" style="gap:6px"><span class="chip c-mint num">${open} đề đang mở</span><span class="chip ${pend ? 'c-sky' : 'c-plain'} num">${pend} chờ chấm</span><span class="chip c-plain num">${ex.length} đề</span></div>
     <div class="stack" style="gap:4px"><span class="hint">Tỷ lệ SV đạt CLO (các đề đã giao)</span>
-      <div class="clomini">${R.clos.map(k => `<div title="${k.id}: ${k.n ? pct(k.rate) : 'chưa đo'}"><i style="height:${k.n ? Math.max(6, k.rate * 100) : 0}%;background:${k.n ? (k.met ? 'var(--mint)' : 'var(--bad)') : 'transparent'}"></i><span>${k.id.replace('CLO', '')}</span></div>`).join('')}</div></div>
+      <div class="clomini">${R.clos.map(k => `<div title="${k.id}: ${k.n ? pct(k.rate) : 'chưa đo'}"><i style="height:${k.n ? Math.max(6, k.rate * 100) : 0}%;background:${k.n ? (k.met ? 'var(--mint-b)' : 'var(--bad-b)') : 'transparent'}"></i><span>${k.id.replace('CLO', '')}</span></div>`).join('')}</div></div>
     <div class="row"><button class="btn sm pri" data-act="goSec" data-id="${s.id}" data-v="grade">Chấm bài</button><button class="btn sm" data-act="goSec" data-id="${s.id}" data-v="exams">Đề thi</button><button class="btn sm ghost" data-act="goSec" data-id="${s.id}" data-v="report">Báo cáo</button></div>
   </div>`;
 }
@@ -1451,7 +1553,7 @@ function gvCourses() {
       </div>
       <div class="clolist" aria-label="Chuẩn đầu ra học phần">${c.clos.map((k, n) => `<div class="cloitem" tabindex="0"><span class="chip ${CLO_COLORS[n % CLO_COLORS.length]}">${esc(k.id)}</span><span class="clotext">${esc(k.desc) || '<i class="faint">chưa có nội dung</i>'}</span></div>`).join('') || '<span class="hint">Chưa khai báo CLO – bấm “Sửa học phần & CLO”.</span>'}</div>
       ${secs.length ? `<div class="tw"><table><thead><tr><th>Lớp</th><th>Học kỳ</th><th>Khóa</th><th class="c">SV</th><th class="c">Đề</th><th class="c">Chờ chấm</th><th></th></tr></thead><tbody>
-        ${secs.map(s => `<tr ${s.id === SEC()?.id ? 'style="background:var(--lemon-s)"' : ''}><td><b>${esc(s.cls)}</b></td><td>${esc(termKey(s))}</td><td>${esc(s.cohort)}</td><td class="c num">${s.students.length}</td><td class="c num">${secExams(s).length}</td><td class="c num">${pendingOf(s).length}</td>
+        ${secs.map(s => `<tr ${s.id === SEC()?.id ? 'style="background:var(--sky-tint)"' : ''}><td><b>${esc(s.cls)}</b></td><td>${esc(termKey(s))}</td><td>${esc(s.cohort)}</td><td class="c num">${s.students.length}</td><td class="c num">${secExams(s).length}</td><td class="c num">${pendingOf(s).length}</td>
           <td class="r"><div class="row" style="justify-content:flex-end;flex-wrap:nowrap"><button class="btn sm pri" data-act="goSec" data-id="${s.id}" data-v="grade">Làm việc</button><button class="btn sm ghost" data-act="editSection" data-id="${s.id}">Sửa</button><button class="btn sm ghost" data-act="archiveSec" data-id="${s.id}">Lưu trữ</button><button class="btn sm ghost" data-act="delSection" data-id="${s.id}">Xóa</button></div></td></tr>`).join('')}
       </tbody></table></div>` : '<div class="empty">Học phần chưa có lớp nào.</div>'}
     </div>`; }).join('')}</div>`;
@@ -1557,20 +1659,21 @@ function svItems(me) {
 }
 function dueChip(x) {
   if (x.st === 'done') return `<span class="due faint num">nộp ${dt(x.sub.submittedAt).slice(-10)}</span>`;
-  if (x.st === 'doing') { const left = deadline(x.e, x.sub) - Date.now(); return `<span class="due num" style="color:var(--bad)">còn ${left <= 0 ? '0' : left > 864e5 * 2 ? Math.round(left / 864e5) + ' ngày' : left > 36e5 ? Math.round(left / 36e5) + ' giờ' : fmtLeft(left)}</span>`; }
+  if (x.st === 'doing') { const left = deadline(x.e, x.sub) - Date.now(); return `<span class="due num ${left < 36e5 ? 'urgent' : ''}" style="color:var(--sky-t);font-weight:700">còn ${left <= 0 ? '0' : left > 864e5 * 2 ? Math.round(left / 864e5) + ' ngày' : left > 36e5 ? Math.round(left / 36e5) + ' giờ' : fmtLeft(left)}</span>`; }
   if (x.st === 'soon') return `<span class="due num" style="color:var(--sky);font-weight:700">mở ${dt(x.e.opensAt).replace(' ', ' · ')}</span>`;
   if (!x.due) return '<span class="due faint">không hạn</span>';
   const h = (x.due - Date.now()) / 36e5;
   if (h < 0) return `<span class="due faint num">hạn ${dt(x.due).slice(-10)}</span>`;
-  return `<span class="due num" style="${h < 24 ? 'color:var(--bad);font-weight:800' : h < 72 ? 'color:var(--peach);font-weight:700' : ''}">${h < 1 ? 'còn ' + Math.max(1, Math.round(h * 60)) + ' phút' : h < 48 ? 'còn ' + Math.round(h) + ' giờ' : 'còn ' + Math.round(h / 24) + ' ngày'}</span>`;
+  return `<span class="due num ${h < 24 ? 'urgent' : ''}" style="${h < 72 ? 'color:var(--peach-t);font-weight:700' : ''}">${h < 1 ? 'còn ' + Math.max(1, Math.round(h * 60)) + ' phút' : h < 48 ? 'còn ' + Math.round(h) + ' giờ' : 'còn ' + Math.round(h / 24) + ' ngày'}</span>`;
 }
-const ST_SV = {soon:['Sắp mở','c-sky'], todo:['Chưa làm','c-berry'], doing:['Đang làm','c-lemon'], done:['Đã nộp','c-mint'], late:['Quá hạn','c-bad'], closed:['Đã đóng','c-plain'], oral:['Vấn đáp','c-peach']};
+const ST_SV = {soon:['Sắp mở','c-sky'], todo:['Chưa làm','c-sky'], doing:['Đang làm','c-lemon'], done:['Đã nộp','c-mint'], late:['Quá hạn','c-bad'], closed:['Đã đóng','c-plain'], oral:['Vấn đáp','c-peach']};
 function svRow(x, showCourse) {
+  const urgent = x.st === 'todo' && x.due && x.due - Date.now() < 864e5;
   const C = COURSE(x.e.courseId), tone = courseTone(C.id), p = x.sub?.submittedAt ? pendingQs(x.e, x.sub).length : 0;
   const act = x.st === 'done' ? `<span class="num score">${p ? 'chờ chấm' : fmt(subTotal(x.e, x.sub)) + '/' + fmt(examMax(x.e))}</span>`
-    : x.st === 'doing' ? `<button class="btn sm lemon" data-act="startExam" data-id="${x.e.id}">${x.sub.locked ? 'Đang bị khóa' : 'Làm tiếp'}</button>`
-    : x.st === 'todo' ? `<button class="btn sm pri" data-act="startExam" data-id="${x.e.id}">Làm bài</button>` : '';
-  return `<div class="svrow" style="--tone:var(--${tone})">
+    : x.st === 'doing' ? `<button class="btn sm ${x.sub.locked ? 'bad attn-bad' : 'pri attn'}" data-act="startExam" data-id="${x.e.id}">${x.sub.locked ? 'Đang bị khóa' : 'Làm tiếp'}</button>`
+    : x.st === 'todo' ? `<button class="btn sm ${urgent ? 'pri attn-warn' : 'sky'}" data-act="startExam" data-id="${x.e.id}">Làm bài</button>` : '';
+  return `<div class="svrow ${x.sub?.locked && x.st === 'doing' ? 'hot' : x.st === 'doing' ? 'doing' : ''}" style="--tone:var(--${tone})">
     ${showCourse ? `<span class="ctag" style="background:var(--${tone}-s)" title="${esc(C.name)}">${esc(C.code)}</span>` : ''}
     <div class="svmain"><b>${esc(x.e.title)}</b><span class="hint">${showCourse ? esc(C.name) + ' · ' : ''}${examLabel(x.e)} · ${x.e.questions.length} câu · ${x.e.duration >= 1440 ? Math.round(x.e.duration / 1440) + ' ngày' : x.e.duration + ' phút'}${P_(x.e).mode === 'free' ? ' · tự do' : ''}</span></div>
     ${dueChip(x)}<span class="chip ${ST_SV[x.st][1]}">${ST_SV[x.st][0]}</span><div class="svact">${act}</div></div>`;
@@ -1588,10 +1691,10 @@ function svMine() {
   const groups = {}; pool.forEach(x => (groups[x.e.courseId] ||= []).push(x));
   return `
   ${pageHead(esc(DB.me.name), 'Bài được giao', `${svSections(me).filter(s => !s.archived).length} lớp học phần · ${courses.length} môn`)}
-  ${locked ? `<div class="banner" style="border-color:var(--bad)">Bài <b>${esc(locked.e.title)}</b> đang bị khóa vì bạn đã rời trình duyệt, chờ giảng viên mở. <button class="btn sm" data-act="startExam" data-id="${locked.e.id}">Mở bài</button></div>` : ''}
+  ${locked ? `<div class="banner bad">Bài <b>${esc(locked.e.title)}</b> đang bị khóa vì bạn đã rời trình duyệt, chờ giảng viên mở. <button class="btn sm pri attn-bad" data-act="startExam" data-id="${locked.e.id}">Mở bài</button></div>` : ''}
   <div class="svsum">
     <button class="sumbox ${tab === 'todo' ? 'on' : ''}" data-act="svTab" data-v="todo"><b class="num">${todo.length}</b><span>Cần làm</span></button>
-    <button class="sumbox" data-act="svTab" data-v="todo" style="--b:var(--bad-s)"><b class="num">${soon}</b><span>Hết hạn trong 24 giờ</span></button>
+    <button class="sumbox ${soon ? 'attn-warn' : ''}" data-act="svTab" data-v="todo" style="--b:${soon ? 'var(--lemon-s)' : 'var(--surface)'}"><b class="num">${soon}</b><span>Hết hạn trong 24 giờ</span></button>
     <button class="sumbox ${tab === 'done' ? 'on' : ''}" data-act="svTab" data-v="done"><b class="num">${all.filter(x => x.st === 'done').length}</b><span>Đã nộp${waiting ? ` · ${waiting} chờ chấm` : ''}</span></button>
     <button class="sumbox ${tab === 'past' ? 'on' : ''}" data-act="svTab" data-v="past"><b class="num">${all.filter(x => ['late','closed','oral'].includes(x.st)).length}</b><span>Quá hạn / đã đóng</span></button>
   </div>
@@ -2341,7 +2444,7 @@ function monRow(x, all) {
     <div class="svmain"><b>${esc(e.title)}</b><span class="hint">${esc(COURSE(e.courseId).name)} · ${examLabel(e)} · ${strict(e) ? 'giám sát' : 'tự do'}${left != null ? ` · đóng sau ${ago(left)}` : ''}</span></div>
     <div class="stackbar" title="${c.done} nộp · ${c.doing + c.away} đang làm · ${c.locked} khóa · ${c.none} chưa vào">${[['done','grape'],['doing','mint'],['away','peach'],['locked','bad']].map(([k, col]) => c[k] ? `<i style="flex:${c[k]};background:var(--${col})"></i>` : '').join('')}<i style="flex:${c.none || (n ? 0 : 1)};background:var(--sunk)"></i></div>
     <span class="num hint" style="min-width:110px;text-align:right">${c.doing + c.away + c.locked} đang làm · ${c.done}/${n} nộp</span>
-    ${c.locked ? `<span class="chip c-bad num pulse">${c.locked} khóa</span>` : c.away ? `<span class="chip c-peach num">${c.away} ở ngoài</span>` : '<span style="min-width:62px"></span>'}
+    ${c.locked ? `<span class="chip c-bad num attn-bad">${c.locked} khóa</span>` : c.away ? `<span class="chip c-peach num">${c.away} ở ngoài</span>` : '<span style="min-width:62px"></span>'}
   </button>`;
 }
 function gvMonitor() {
@@ -2360,15 +2463,15 @@ function gvMonitor() {
   const until = ts => { const m = ts - Date.now(); return m > 864e5 ? `sau ${Math.round(m / 864e5)} ngày` : m > 36e5 ? `sau ${Math.round(m / 36e5)} giờ` : `sau ${Math.max(1, Math.round(m / 6e4))} phút`; };
   return `
   ${pageHead('Giám sát', 'Phòng thi trực tuyến', `${now.length} bài đang thi · ${soon.length} bài sắp thi · ${hw.length} bài tập đang mở`,
-    `<button class="btn pri" data-act="unlockEvery" ${tot('locked') ? '' : 'disabled'}>Mở khóa tất cả (${tot('locked')})</button>`)}
+    `<button class="btn pri ${tot('locked') ? 'attn-bad' : ''}" data-act="unlockEvery" ${tot('locked') ? '' : 'disabled'}>Mở khóa tất cả (${tot('locked')})</button>`)}
   <div class="row" style="justify-content:space-between;margin-bottom:12px">
     <div class="tabs"><button class="${all ? 'on' : ''}" data-act="monScope" data-v="all">Tất cả lớp của tôi</button><button class="${!all ? 'on' : ''}" data-act="monScope" data-v="sec">Chỉ lớp ${esc(sec.cls)}</button></div>
     <span class="hint">Tự cập nhật mỗi 3 giây · bấm một dòng để xem từng sinh viên</span>
   </div>
   <div class="monsum">
-    ${[['locked','Bị khóa, chờ mở'],['away','Đang ở ngoài'],['doing','Đang làm'],['done','Đã nộp (bài đang thi)']].map(([k, t]) => `<div class="${k === 'locked' && tot(k) ? 'pulse' : ''}" style="--b:var(--${{locked:'bad',away:'peach',doing:'mint',done:'grape'}[k]}-s)"><b class="num">${tot(k)}</b><span>${t}</span></div>`).join('')}
+    ${[['locked','Bị khóa, chờ mở'],['away','Đang ở ngoài'],['doing','Đang làm'],['done','Đã nộp (bài đang thi)']].map(([k, t]) => `<div class="${k === 'locked' && tot(k) ? 'hot' : ''}" style="--b:var(--${{locked:'bad',away:'peach',doing:'mint',done:'grape'}[k]}-s)"><b class="num">${tot(k)}</b><span>${t}</span></div>`).join('')}
   </div>
-  <h3 class="mh"><i style="background:var(--bad)"></i>Đang thi <span class="hint">${now.length}</span></h3>
+  <h3 class="mh ${now.length ? 'live-h' : ''}"><i style="background:var(--bad)"></i>Đang thi <span class="hint">${now.length}</span></h3>
   ${now.length ? `<div class="svlist">${now.map(x => monRow(x, all)).join('')}</div>` : '<div class="empty">Không có lớp nào đang thi.</div>'}
   <h3 class="mh"><i style="background:var(--sky)"></i>Sắp thi <span class="hint">7 ngày tới · ${soon.length}</span></h3>
   ${soon.length ? `<div class="svlist">${soon.map(({e, sc}) => { const tone = courseTone(e.courseId); return `<div class="svrow" style="--tone:var(--${tone})">
@@ -2389,7 +2492,7 @@ function monDetail({e, sc}) {
   return `
   <div class="row" style="margin-bottom:10px"><button class="btn sm ghost" data-act="monBack">← Tất cả bài đang mở</button></div>
   ${pageHead(`Giám sát · Lớp ${esc(sc.cls)}`, esc(e.title), `${esc(COURSE(e.courseId).name)} · ${examLabel(e)} · ${durText(e.duration)} · ${P.mode === 'free' ? 'chế độ tự do' : `giám sát: rời tối đa ${P.maxLeaves} lần${P.lockOnReturn ? ', khóa khi quay lại' : ''}`}${e.closesAt ? ` · đóng lúc ${dt(e.closesAt)}` : ''}`,
-    `<button class="btn pri" data-act="unlockAll" ${cnt('locked') ? '' : 'disabled'}>Mở khóa cả lớp (${cnt('locked')})</button><button class="btn ghost" data-act="addTimeAll">+5 phút cả lớp</button>`)}
+    `<button class="btn pri ${cnt('locked') ? 'attn-bad' : ''}" data-act="unlockAll" ${cnt('locked') ? '' : 'disabled'}>Mở khóa cả lớp (${cnt('locked')})</button><button class="btn ghost" data-act="addTimeAll">+5 phút cả lớp</button>`)}
   <div class="row" style="justify-content:space-between;margin-bottom:12px">
     <div class="tabs">${[['all','Tất cả', rowsAll.length], ...order.map(k => [k, MST[k][0], cnt(k)])].map(([k, t, n]) => `<button class="${f === k ? 'on' : ''}" data-act="monF" data-v="${k}">${t} <span class="num">${n}</span></button>`).join('')}</div>
     <input class="in" id="monQ" style="max-width:240px" placeholder="Tìm tên hoặc MSSV…" value="${esc(S.monQ || '')}">
@@ -2398,7 +2501,7 @@ function monDetail({e, sc}) {
     <thead><tr><th>Sinh viên</th><th>Trạng thái</th><th class="c">Tiến độ</th><th>Rời trình duyệt</th><th class="c">Chặn dán</th><th class="c">Ảnh/link</th><th class="c">Còn lại</th><th></th></tr></thead>
     <tbody>${rows.map(({st, sub}) => { const k = monState(sub), L = sub?.leaves || [];
       const att = sub?._nAtt != null ? sub._nAtt : sub ? sum(qs.map(qq => { const v = sub.answers[qq.id]; return v && typeof v === 'object' ? (v.imgs?.length || 0) + (v.links?.length || 0) : 0; })) : 0;
-      return `<tr ${k === 'locked' ? 'style="background:var(--bad-s)"' : ''}>
+      return `<tr class="${k === 'locked' ? 'locked' : ''}">
         <td><b>${esc(st.name)}</b> <span class="hint num">${st.id}</span>${sub?.flag ? `<div class="hint" style="color:var(--bad)">${esc(sub.flag)}</div>` : ''}</td>
         <td><span class="chip ${MST[k][1]}">${MST[k][0]}</span></td>
         <td class="c num">${sub ? `${qs.filter(x => hasAns(sub.answers[x.id])).length}/${qs.length}` : '–'}</td>
@@ -2406,7 +2509,7 @@ function monDetail({e, sc}) {
         <td class="c num">${sub?.pasteBlocked || 0}</td><td class="c num">${att}</td>
         <td class="c num">${sub && !sub.submittedAt ? fmtLeft(Math.max(0, deadline(e, sub) - Date.now())) + (sub.extraMin ? ` <span class="hint">+${sub.extraMin}′</span>` : '') : '–'}</td>
         <td class="r"><div class="row" style="justify-content:flex-end;flex-wrap:nowrap">
-          ${k === 'locked' ? `<button class="btn sm pri" data-act="unlock" data-id="${sub.id}">Mở khóa</button>` : ''}
+          ${k === 'locked' ? `<button class="btn sm pri attn-bad" data-act="unlock" data-id="${sub.id}">Mở khóa</button>` : ''}
           ${sub && !sub.submittedAt ? `<button class="btn sm ghost" data-act="addTime" data-id="${sub.id}">+5′</button>` : ''}
           ${sub?.submittedAt ? `<button class="btn sm ghost" data-act="openSub" data-id="${sub.id}">Xem bài</button>` : ''}
         </div></td></tr>`; }).join('') || '<tr><td colspan="8" class="hint">Không có sinh viên phù hợp.</td></tr>'}</tbody></table></div>`;
@@ -2974,10 +3077,15 @@ const REMOTE = (() => {
   /* ---------- gọi máy chủ ---------- */
   async function call(action, data = {}, opt = {}) {
     const body = JSON.stringify({...data, action, sid: R.sid});
-    let res;
-    try { res = await fetch(API, {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body, keepalive: !!opt.keepalive && body.length < 60000}); }
-    catch (e) { const er = new Error('Không kết nối được máy chủ.'); er.net = true; throw er; }
-    let j; try { j = await res.json(); } catch (e) { const er = new Error(`Máy chủ trả lời không hợp lệ (HTTP ${res.status}).`); er.net = true; throw er; }
+    let res, j, lastErr;
+    // Google đôi khi trả 404/5xx thoáng qua (quá tải, liên kết chuyển tiếp hết hạn) → tự thử lại tối đa 3 lần
+    for (let k = 0; k < 3 && !j; k++) {
+      if (k) await new Promise(r => setTimeout(r, 800 * k));
+      try { res = await fetch(API, {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body, cache: 'no-store', keepalive: !!opt.keepalive && body.length < 60000}); }
+      catch (e) { lastErr = new Error('Không kết nối được máy chủ.'); continue; }
+      try { j = await res.json(); } catch (e) { lastErr = new Error(`Máy chủ trả lời không hợp lệ (HTTP ${res.status}).`); }
+    }
+    if (!j) { lastErr.net = true; throw lastErr; }
     if (j.now) R.skew = j.now - Date.now();
     if (!j.ok) { const er = new Error(j.error || 'Máy chủ báo lỗi.'); er.code = j.code; if (j.code === 'AUTH' && action !== 'login') authLost(); throw er; }
     return j;
@@ -3356,11 +3464,11 @@ const REMOTE = (() => {
   }
   const _svMine = svMine;
   svMine = function () {
-    return (R.isDefault ? `<div class="banner" style="background:var(--lemon-s)">Bạn đang dùng mật khẩu mặc định (là MSSV). Nên đổi mật khẩu để người khác không vào được tài khoản của bạn. <button class="btn sm pri" data-act="chgPw">Đổi mật khẩu</button></div>` : '') + _svMine();
+    return (R.isDefault ? `<div class="banner warn">Bạn đang dùng mật khẩu mặc định (là MSSV). Nên đổi mật khẩu để người khác không vào được tài khoản của bạn. <button class="btn sm pri attn-warn" data-act="chgPw">Đổi mật khẩu</button></div>` : '') + _svMine();
   };
   const _gvHome = gvHome;
   gvHome = function () {
-    return _gvHome() + (mySections().length ? '' : `<div class="card stack" style="margin-top:16px;background:var(--lemon-s)"><h3>Bắt đầu với máy chủ mới</h3>
+    return _gvHome() + (mySections().length ? '' : `<div class="card stack" style="margin-top:16px;background:var(--sky-tint);border-color:var(--sky-b)"><h3>Bắt đầu với máy chủ mới</h3>
       <p>Tạo học phần và CLO, rồi nhập danh sách lớp bằng tệp .xls của trường. Nếu đã dùng bản xem trước, có thể đưa toàn bộ dữ liệu cũ lên bằng tệp sao lưu JSON.</p>
       <div class="row"><button class="btn pri" data-act="newCourse">+ Học phần</button><button class="btn" data-act="importXls">Nhập danh sách từ .xls</button><button class="btn ghost" data-go="connect">Nhập tệp sao lưu JSON</button></div></div>`);
   };
